@@ -12,6 +12,8 @@
 		1337D9C41756443E0059BBF5 /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1337D9C31756443E0059BBF5 /* icon1.png */; };
 		1337D9C5175644440059BBF5 /* icon1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1337D9BE175643020059BBF5 /* icon1@2x.png */; };
 		1337D9C81756492A0059BBF5 /* BGHD.png in Resources */ = {isa = PBXBuildFile; fileRef = 1337D9C71756492A0059BBF5 /* BGHD.png */; };
+		1337D9CA175651C40059BBF5 /* background.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1337D9C9175651C40059BBF5 /* background.wav */; };
+		1337D9CD175653EF0059BBF5 /* water.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1337D9CC175653EF0059BBF5 /* water.wav */; };
 		A6037F1C148C112D00442DAA /* image_old.png in Resources */ = {isa = PBXBuildFile; fileRef = A6037F1B148C112D00442DAA /* image_old.png */; };
 		A6679CDE1488DA7D00322312 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDD1488DA7D00322312 /* QuartzCore.framework */; };
 		A6679CE01488DA7D00322312 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDF1488DA7D00322312 /* OpenGLES.framework */; };
@@ -138,6 +140,8 @@
 		1337D9C0175643110059BBF5 /* icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon2@2x.png"; sourceTree = "<group>"; };
 		1337D9C31756443E0059BBF5 /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
 		1337D9C71756492A0059BBF5 /* BGHD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGHD.png; sourceTree = "<group>"; };
+		1337D9C9175651C40059BBF5 /* background.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = background.wav; sourceTree = "<group>"; };
+		1337D9CC175653EF0059BBF5 /* water.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = water.wav; sourceTree = "<group>"; };
 		A6037F1B148C112D00442DAA /* image_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image_old.png; path = Resources/image_old.png; sourceTree = "<group>"; };
 		A6679CD91488DA7D00322312 /* Koi HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Koi HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6679CDD1488DA7D00322312 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -454,6 +458,8 @@
 		A6679CEE1488DA7D00322312 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1337D9CC175653EF0059BBF5 /* water.wav */,
+				1337D9C9175651C40059BBF5 /* background.wav */,
 				1337D9B71756388E0059BBF5 /* BG.png */,
 				1337D9C71756492A0059BBF5 /* BGHD.png */,
 				A6037F1B148C112D00442DAA /* image_old.png */,
@@ -848,6 +854,8 @@
 				1337D9C41756443E0059BBF5 /* icon1.png in Resources */,
 				1337D9C5175644440059BBF5 /* icon1@2x.png in Resources */,
 				1337D9C81756492A0059BBF5 /* BGHD.png in Resources */,
+				1337D9CA175651C40059BBF5 /* background.wav in Resources */,
+				1337D9CD175653EF0059BBF5 /* water.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

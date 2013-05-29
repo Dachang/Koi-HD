@@ -40,8 +40,13 @@
         // create ripple sprite
         // --------------------------------------------------------------------------
 
+        [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"background.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"water.wav"];
+        
         rippleImage = [ pgeRippleSprite ripplespriteWithFile:@"BGHD.png" ];
         [ self addChild:rippleImage ];
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background.wav" loop:YES];
 
         // --------------------------------------------------------------------------
         
@@ -65,6 +70,7 @@ float runtime = 0;
 -( BOOL )ccTouchBegan:( UITouch* )touch withEvent:( UIEvent* )event {
     runtime = 0.1f;
     [ self ccTouchMoved:touch withEvent:event ];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"water.wav"];
     return( YES );
 }
 
