@@ -168,9 +168,9 @@
                 // check if vertice is an edge vertice, because edge vertices are never modified to keep outline consistent
                 m_edgeVertice[ vertexPos ] = ( 
                                               ( x == 0 ) || 
-                                              ( x == m_quadCountX ) ||
+                                              (x == m_quadCountX) || (x == m_quadCountX - 1) ||
                                               ( ( y == 0 ) && ( yy == 0 ) ) || 
-                                              ( ( y == ( m_quadCountY - 1 ) ) && ( yy > 0 ) ) );
+                                              ( ( y == ( m_quadCountY - 1 ) )) || (( y == ( m_quadCountY - 2 )) && ( yy > 0 )) || (( y == ( m_quadCountY - 3 )) && ( yy > 0 )));
                 
                 // next buffer pos
                 vertexPos ++;
@@ -233,10 +233,10 @@
             pos = ccp( -parent->center.x, parent->center.y );
             break;
         case RIPPLE_CHILD_TOP:
-            pos = ccp( parent->center.x, 320 + ( 320 - parent->center.y ) );
+            pos = ccp( parent->center.x, 1024 + ( 1024 - parent->center.y ) );
             break;
         case RIPPLE_CHILD_RIGHT:
-            pos = ccp( 480 + ( 480 - parent->center.x ), parent->center.y );            
+            pos = ccp( 768 + ( 768 - parent->center.x ), parent->center.y );
             break;
         case RIPPLE_CHILD_BOTTOM:
         default:
