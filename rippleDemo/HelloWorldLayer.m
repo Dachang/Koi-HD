@@ -40,6 +40,33 @@
         // create ripple sprite
         // --------------------------------------------------------------------------
 
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        fish = [CCSprite spriteWithFile:@"fish3.png"];
+        [fish setPosition:CGPointMake(winSize.width/2, winSize.height/2)];
+        [fish setOpacity:100];
+        [ self addChild:fish z:1 tag:1];
+        
+        CCTexture2D* playRunTexture = [[CCTextureCache sharedTextureCache] addImage:@"player_run.png"];
+        NSMutableArray* animFrames = [[NSMutableArray alloc] init];
+        for(int i = 0;i<8;i++)
+        {
+            [animFrames addObject:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(72*i, 0, 72, 72)]];
+        }
+
+        CCAnimation* animation = [[CCAnimation alloc] init];
+        [animation initWithFrames:animFrames delay:0.08f];
+        [animFrames release];
+        
+        CCAnimate *animate = [CCAnimate actionWithAnimation:animation restoreOriginalFrame:false];
+        CCSprite* player = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(0, 0, 72, 72)]];
+
+        [player runAction:[CCRepeatForever actionWithAction:animate]];
+        [player setPosition:CGPointMake(winSize.width/2, winSize.height/2)];
+        [self addChild:player z:2];
+        
+        
+
+        
         [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"background.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"water.wav"];
         
@@ -49,11 +76,9 @@
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background.wav" loop:YES];
 
         // --------------------------------------------------------------------------
+
         
-		// create and initialize a Label
-//		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello Cocos2D Forum" fontName:@"Marker Felt" fontSize:16];
-//		label.position = ccp( 80 , 300 );
-//		[self addChild: label];
+
         
         // enable touch
         [ [ CCTouchDispatcher sharedDispatcher ] addTargetedDelegate:self priority:0 swallowsTouches:YES ];	
@@ -91,6 +116,9 @@ float runtime = 0;
         
     }
 }
+
+
+
 
 -( void )update:( ccTime )dt {
     

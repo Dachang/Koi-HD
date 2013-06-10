@@ -11,9 +11,12 @@
 #import "cocos2d.h"
 #import "pgeRippleSprite.h"
 
+#define FRAMETIME 0.08f  
+
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer {
     pgeRippleSprite* rippleImage;
+    CCSprite* fish;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
