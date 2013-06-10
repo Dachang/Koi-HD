@@ -16,6 +16,8 @@
 		1337D9CD175653EF0059BBF5 /* water.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1337D9CC175653EF0059BBF5 /* water.wav */; };
 		135509371764E6FB00D20618 /* player_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 135509361764E6FB00D20618 /* player_run.png */; };
 		135509391764E7B300D20618 /* fish3.png in Resources */ = {isa = PBXBuildFile; fileRef = 135509381764E7B300D20618 /* fish3.png */; };
+		13D4FC7C176605B9002782DA /* fish_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7B176605B9002782DA /* fish_run.png */; };
+		13D4FC7E17660A7F002782DA /* koi_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7D17660A7F002782DA /* koi_run.png */; };
 		A6037F1C148C112D00442DAA /* image_old.png in Resources */ = {isa = PBXBuildFile; fileRef = A6037F1B148C112D00442DAA /* image_old.png */; };
 		A6679CDE1488DA7D00322312 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDD1488DA7D00322312 /* QuartzCore.framework */; };
 		A6679CE01488DA7D00322312 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDF1488DA7D00322312 /* OpenGLES.framework */; };
@@ -146,6 +148,8 @@
 		1337D9CC175653EF0059BBF5 /* water.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = water.wav; sourceTree = "<group>"; };
 		135509361764E6FB00D20618 /* player_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_run.png; sourceTree = "<group>"; };
 		135509381764E7B300D20618 /* fish3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish3.png; sourceTree = "<group>"; };
+		13D4FC7B176605B9002782DA /* fish_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish_run.png; sourceTree = "<group>"; };
+		13D4FC7D17660A7F002782DA /* koi_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koi_run.png; sourceTree = "<group>"; };
 		A6037F1B148C112D00442DAA /* image_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image_old.png; path = Resources/image_old.png; sourceTree = "<group>"; };
 		A6679CD91488DA7D00322312 /* Koi HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Koi HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6679CDD1488DA7D00322312 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -468,6 +472,8 @@
 				1337D9B71756388E0059BBF5 /* BG.png */,
 				1337D9C71756492A0059BBF5 /* BGHD.png */,
 				135509361764E6FB00D20618 /* player_run.png */,
+				13D4FC7B176605B9002782DA /* fish_run.png */,
+				13D4FC7D17660A7F002782DA /* koi_run.png */,
 				A6037F1B148C112D00442DAA /* image_old.png */,
 				A6679E6B1488DD5300322312 /* image.png */,
 				A6679CEF1488DA7D00322312 /* Default.png */,
@@ -864,6 +870,8 @@
 				1337D9CD175653EF0059BBF5 /* water.wav in Resources */,
 				135509371764E6FB00D20618 /* player_run.png in Resources */,
 				135509391764E7B300D20618 /* fish3.png in Resources */,
+				13D4FC7C176605B9002782DA /* fish_run.png in Resources */,
+				13D4FC7E17660A7F002782DA /* koi_run.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

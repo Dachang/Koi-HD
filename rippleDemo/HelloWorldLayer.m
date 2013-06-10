@@ -40,13 +40,14 @@
         // create ripple sprite
         // --------------------------------------------------------------------------
 
+        // create koi animation
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         fish = [CCSprite spriteWithFile:@"fish3.png"];
-        [fish setPosition:CGPointMake(winSize.width/2, winSize.height/2)];
+        [fish setPosition:CGPointMake(winSize.width/2, winSize.height/2 - 50)];
         [fish setOpacity:100];
-        [ self addChild:fish z:1 tag:1];
+//        [ self addChild:fish z:1 tag:1];
         
-        CCTexture2D* playRunTexture = [[CCTextureCache sharedTextureCache] addImage:@"player_run.png"];
+        CCTexture2D* playRunTexture = [[CCTextureCache sharedTextureCache] addImage:@"koi_run.png"];
         NSMutableArray* animFrames = [[NSMutableArray alloc] init];
         for(int i = 0;i<8;i++)
         {
@@ -54,15 +55,15 @@
         }
 
         CCAnimation* animation = [[CCAnimation alloc] init];
-        [animation initWithFrames:animFrames delay:0.08f];
+        [animation initWithFrames:animFrames delay:0.15f];
         [animFrames release];
         
         CCAnimate *animate = [CCAnimate actionWithAnimation:animation restoreOriginalFrame:false];
-        CCSprite* player = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(0, 0, 72, 72)]];
+        koi = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(0, 0, 72, 72)]];
 
-        [player runAction:[CCRepeatForever actionWithAction:animate]];
-        [player setPosition:CGPointMake(winSize.width/2, winSize.height/2)];
-        [self addChild:player z:2];
+        [koi runAction:[CCRepeatForever actionWithAction:animate]];
+        [koi setPosition:CGPointMake(winSize.width/2, winSize.height/2)];
+        [self addChild:koi z:2];
         
         
 
@@ -111,19 +112,51 @@ float runtime = 0;
         pos = [ [ CCDirector sharedDirector ] convertToGL:pos ];
     
         // [ rippleImage addRipple:pos type:RIPPLE_TYPE_RUBBER strength:1.0f ];    
-        [ rippleImage addRipple:pos type:RIPPLE_TYPE_WATER strength:2.0f ];  
+        [ rippleImage addRipple:pos type:RIPPLE_TYPE_WATER strength:2.0f ];
+        
+        //create koi rotation
+        if((pos.x > koi.position.x) && (pos.y > koi.position.y))
+        {
+            koi.rotation = 25;
+        }
+        if((pos.x < koi.position.x) && (pos.y > koi.position.y))
+        {
+            koi.rotation = -90;
+        }
+        if((pos.x > koi.position.x) && (pos.y < koi.position.y))
+        {
+            koi.rotation = 90;
+        }
+        if((pos.x < koi.position.x) && (pos.y < koi.position.y))
+        {
+            koi.rotation = 180;
+        }
         
         
+        CCAction* action3 = [CCMoveTo actionWithDuration:10.0f position:pos];
+        [koi runAction:action3];
     }
 }
 
+-(CCMoveTo*) actionWithDuration:(ccTime)duration pos:(CGPoint) position
+{
+    CCMoveTo* move_to = [[CCMoveTo alloc] initWithDuration: duration position: position];
+    return move_to;
+}
 
+//-(int)getRandomNumber:(int)from to:(int)to
+//
+//{
+//    return (from + (arc4random() % (to - from + 1)));
+//}
 
 
 -( void )update:( ccTime )dt {
     
     runtime += dt;
     
+//    speed = [self getRandomNumber:10 to:21];
+//    NSLog(@"%d",speed);
     [ rippleImage update:dt ];
 }
 

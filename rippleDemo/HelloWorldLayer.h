@@ -17,6 +17,9 @@
 @interface HelloWorldLayer : CCLayer {
     pgeRippleSprite* rippleImage;
     CCSprite* fish;
+    CCSprite* koi;
+//    int speed;
+//    float randomSpeed;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
