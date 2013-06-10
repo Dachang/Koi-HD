@@ -17,7 +17,9 @@
 @interface HelloWorldLayer : CCLayer {
     pgeRippleSprite* rippleImage;
     CCSprite* fish;
-    CCSprite* koi;
+    CCSprite* koi_tiny;
+    CCAction* action_gather;
+    CCAction* action_fade;
 //    int speed;
 //    float randomSpeed;
 }

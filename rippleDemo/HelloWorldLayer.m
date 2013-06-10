@@ -59,11 +59,11 @@
         [animFrames release];
         
         CCAnimate *animate = [CCAnimate actionWithAnimation:animation restoreOriginalFrame:false];
-        koi = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(0, 0, 72, 72)]];
+        koi_tiny = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(0, 0, 72, 72)]];
 
-        [koi runAction:[CCRepeatForever actionWithAction:animate]];
-        [koi setPosition:CGPointMake(winSize.width/2, winSize.height/2)];
-        [self addChild:koi z:2];
+        [koi_tiny runAction:[CCRepeatForever actionWithAction:animate]];
+        [koi_tiny setPosition:CGPointMake(winSize.width/2, winSize.height/2)];
+        [self addChild:koi_tiny z:2];
         
         
 
@@ -114,27 +114,45 @@ float runtime = 0;
         // [ rippleImage addRipple:pos type:RIPPLE_TYPE_RUBBER strength:1.0f ];    
         [ rippleImage addRipple:pos type:RIPPLE_TYPE_WATER strength:2.0f ];
         
-        //create koi rotation
-        if((pos.x > koi.position.x) && (pos.y > koi.position.y))
+        //create koi rotation (generate a semi-coordinate)
+        if((pos.x > koi_tiny.position.x) && (pos.y > koi_tiny.position.y))
         {
-            koi.rotation = 25;
+            if((pos.x - koi_tiny.position.x) < 100) koi_tiny.rotation = 0;
+            else
+                koi_tiny.rotation = 25;
         }
-        if((pos.x < koi.position.x) && (pos.y > koi.position.y))
+        if((pos.x < koi_tiny.position.x) && (pos.y > koi_tiny.position.y))
         {
-            koi.rotation = -90;
+            if ((pos.y - koi_tiny.position.y) < 140) koi_tiny.rotation = -120;
+            else
+                koi_tiny.rotation = -90;
         }
-        if((pos.x > koi.position.x) && (pos.y < koi.position.y))
+        if((pos.x > koi_tiny.position.x) && (pos.y < koi_tiny.position.y))
         {
-            koi.rotation = 90;
+            if((pos.x - koi_tiny.position.x)<100) koi_tiny.rotation = 125;
+            else
+                koi_tiny.rotation = 90;
         }
-        if((pos.x < koi.position.x) && (pos.y < koi.position.y))
+        if((pos.x < koi_tiny.position.x) && (pos.y < koi_tiny.position.y))
         {
-            koi.rotation = 180;
+            if((koi_tiny.position.x - pos.x) < 100) koi_tiny.rotation = 150;
+            else
+                koi_tiny.rotation = 180;
         }
         
         
-        CCAction* action3 = [CCMoveTo actionWithDuration:10.0f position:pos];
-        [koi runAction:action3];
+        action_fade = [CCMoveTo actionWithDuration:3.0f position:ccp(72, 72)];
+        action_gather = [CCMoveTo actionWithDuration:10.0f position:pos];
+        
+        if (((pos.x - koi_tiny.position.x)*(pos.x - koi_tiny.position.x) < 900) && ((pos.y - koi_tiny.position.y)*(pos.y - koi_tiny.position.y) < 900))
+        {
+            koi_tiny.rotation = 180;
+            [koi_tiny runAction:action_fade];
+            [koi_tiny setPosition:ccp(72, 72)];
+        }
+        else
+            [koi_tiny runAction:action_gather];
+
     }
 }
 
