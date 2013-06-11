@@ -18,8 +18,11 @@
     pgeRippleSprite* rippleImage;
     CCSprite* fish;
     CCSprite* koi_tiny;
+    CCSprite* koi_large;
     CCAction* action_gather;
     CCAction* action_fade;
+    CCAction* action_fade_large;
+    CCAction* action_gather_large;
 //    int speed;
 //    float randomSpeed;
 }
