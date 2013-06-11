@@ -18,6 +18,7 @@
     pgeRippleSprite* rippleImage;
     CCSprite* fish;
     CCSprite* koi_tiny;
+    CCSprite* koi_medium;
     CCSprite* koi_large;
     CCAction* action_gather;
     CCAction* action_fade;

@@ -19,6 +19,7 @@
 		13D4FC7C176605B9002782DA /* fish_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7B176605B9002782DA /* fish_run.png */; };
 		13D4FC7E17660A7F002782DA /* koi_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7D17660A7F002782DA /* koi_run.png */; };
 		13D4FC801766ECE1002782DA /* koi_run_Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7F1766ECE1002782DA /* koi_run_Large.png */; };
+		13D4FC8217670FDD002782DA /* wave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC8117670FDD002782DA /* wave.mp3 */; };
 		A6037F1C148C112D00442DAA /* image_old.png in Resources */ = {isa = PBXBuildFile; fileRef = A6037F1B148C112D00442DAA /* image_old.png */; };
 		A6679CDE1488DA7D00322312 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDD1488DA7D00322312 /* QuartzCore.framework */; };
 		A6679CE01488DA7D00322312 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDF1488DA7D00322312 /* OpenGLES.framework */; };
@@ -152,6 +153,7 @@
 		13D4FC7B176605B9002782DA /* fish_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish_run.png; sourceTree = "<group>"; };
 		13D4FC7D17660A7F002782DA /* koi_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koi_run.png; sourceTree = "<group>"; };
 		13D4FC7F1766ECE1002782DA /* koi_run_Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koi_run_Large.png; sourceTree = "<group>"; };
+		13D4FC8117670FDD002782DA /* wave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wave.mp3; sourceTree = "<group>"; };
 		A6037F1B148C112D00442DAA /* image_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image_old.png; path = Resources/image_old.png; sourceTree = "<group>"; };
 		A6679CD91488DA7D00322312 /* Koi HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Koi HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6679CDD1488DA7D00322312 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -470,6 +472,7 @@
 			children = (
 				1337D9CC175653EF0059BBF5 /* water.wav */,
 				1337D9C9175651C40059BBF5 /* background.wav */,
+				13D4FC8117670FDD002782DA /* wave.mp3 */,
 				135509381764E7B300D20618 /* fish3.png */,
 				1337D9B71756388E0059BBF5 /* BG.png */,
 				1337D9C71756492A0059BBF5 /* BGHD.png */,
@@ -876,6 +879,7 @@
 				13D4FC7C176605B9002782DA /* fish_run.png in Resources */,
 				13D4FC7E17660A7F002782DA /* koi_run.png in Resources */,
 				13D4FC801766ECE1002782DA /* koi_run_Large.png in Resources */,
+				13D4FC8217670FDD002782DA /* wave.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

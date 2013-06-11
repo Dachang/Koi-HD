@@ -54,6 +54,13 @@
             [animFrames addObject:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(72*i, 0, 72, 72)]];
         }
         
+        CCTexture2D* MediumKoiRunTexture = [[CCTextureCache sharedTextureCache] addImage:@"koi_run.png"];
+        NSMutableArray* MediumKoiAnimFrames = [[NSMutableArray alloc] init];
+        for(int i = 0;i<8;i++)
+        {
+            [MediumKoiAnimFrames addObject:[CCSpriteFrame frameWithTexture:MediumKoiRunTexture rect:CGRectMake(72*i, 0, 72, 72)]];
+        }
+        
         CCTexture2D* LargeKoiRunTexture = [[CCTextureCache sharedTextureCache] addImage:@"koi_run_Large.png"];
         NSMutableArray *LargeKoiAnimFrames = [[NSMutableArray alloc] init];
         for (int i = 0; i<4; i++)
@@ -65,12 +72,19 @@
         [animation initWithFrames:animFrames delay:0.15f];
         [animFrames release];
         
+        CCAnimation* MediumKoiAnimation = [[CCAnimation alloc] init];
+        [MediumKoiAnimation initWithFrames:MediumKoiAnimFrames delay:0.15f];
+        [MediumKoiAnimation release];
+        
         CCAnimation* LargeKoiAnimation =[[CCAnimation alloc] init];
         [LargeKoiAnimation initWithFrames:LargeKoiAnimFrames delay:0.15f];
         [LargeKoiAnimFrames release];
         
         CCAnimate *animate = [CCAnimate actionWithAnimation:animation restoreOriginalFrame:false];
+        CCAnimate *MediumKoiAnimate = [CCAnimate actionWithAnimation:MediumKoiAnimation restoreOriginalFrame:false];
+        
         koi_tiny = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:playRunTexture rect:CGRectMake(0, 0, 72, 72)]];
+        koi_medium = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:MediumKoiRunTexture rect:CGRectMake(0, 0, 72, 72)]];
         
         CCAnimate *LargeKoiAnimate = [CCAnimate actionWithAnimation:LargeKoiAnimation restoreOriginalFrame:false];
         koi_large = [CCSprite spriteWithSpriteFrame:[CCSpriteFrame frameWithTexture:LargeKoiRunTexture rect:CGRectMake(0, 0, 144, 144)]];
@@ -84,11 +98,16 @@
         [koi_large setPosition:CGPointMake(500, 500)];
         [self addChild:koi_large z:3];
         
+        [koi_medium runAction:[CCRepeatForever actionWithAction:MediumKoiAnimate]];
+        [koi_medium setPosition:CGPointMake(200, 600)];
+//        [self addChild:koi_medium z:4];
+        
         
 
         // load ripple texture pool & sound effects & background music
         [[SimpleAudioEngine sharedEngine] preloadBackgroundMusic:@"background.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"water.wav"];
+        [[SimpleAudioEngine sharedEngine] preloadEffect:@"wave.mp3"];
         
         rippleImage = [ pgeRippleSprite ripplespriteWithFile:@"BGHD.png" ];
         [ self addChild:rippleImage ];
@@ -113,7 +132,7 @@ float runtime = 0;
 -( BOOL )ccTouchBegan:( UITouch* )touch withEvent:( UIEvent* )event {
     runtime = 0.1f;
     [ self ccTouchMoved:touch withEvent:event ];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"water.wav"];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"wave.mp3"];
     return( YES );
 }
 
@@ -222,7 +241,7 @@ float runtime = 0;
     }
     if((pos.x < koi.position.x) && (pos.y > koi.position.y))
     {
-        if ((pos.y - koi.position.y) < 140) koi.rotation = -130;
+        if ((pos.y - koi.position.y) < 140) koi.rotation = -90;
         else
             koi.rotation = -70;
     }
