@@ -16,10 +16,12 @@
 		1337D9CD175653EF0059BBF5 /* water.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1337D9CC175653EF0059BBF5 /* water.wav */; };
 		135509371764E6FB00D20618 /* player_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 135509361764E6FB00D20618 /* player_run.png */; };
 		135509391764E7B300D20618 /* fish3.png in Resources */ = {isa = PBXBuildFile; fileRef = 135509381764E7B300D20618 /* fish3.png */; };
+		1368D9DF177022B300AA7439 /* BGHD4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1368D9DE177022B300AA7439 /* BGHD4.png */; };
 		13D4FC7C176605B9002782DA /* fish_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7B176605B9002782DA /* fish_run.png */; };
 		13D4FC7E17660A7F002782DA /* koi_run.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7D17660A7F002782DA /* koi_run.png */; };
 		13D4FC801766ECE1002782DA /* koi_run_Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC7F1766ECE1002782DA /* koi_run_Large.png */; };
 		13D4FC8217670FDD002782DA /* wave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC8117670FDD002782DA /* wave.mp3 */; };
+		13D4FC841768187D002782DA /* BGHD3.png in Resources */ = {isa = PBXBuildFile; fileRef = 13D4FC831768187D002782DA /* BGHD3.png */; };
 		A6037F1C148C112D00442DAA /* image_old.png in Resources */ = {isa = PBXBuildFile; fileRef = A6037F1B148C112D00442DAA /* image_old.png */; };
 		A6679CDE1488DA7D00322312 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDD1488DA7D00322312 /* QuartzCore.framework */; };
 		A6679CE01488DA7D00322312 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6679CDF1488DA7D00322312 /* OpenGLES.framework */; };
@@ -135,7 +137,7 @@
 		A6679E441488DA8000322312 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6679E431488DA8000322312 /* AppDelegate.m */; };
 		A6679E471488DA8000322312 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6679E461488DA8000322312 /* RootViewController.m */; };
 		A6679E4A1488DA8000322312 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A6679E491488DA8000322312 /* HelloWorldLayer.m */; };
-		A6679E531488DCD900322312 /* pgeRippleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = A6679E521488DCD900322312 /* pgeRippleSprite.m */; };
+		A6679E531488DCD900322312 /* KOIRippleSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = A6679E521488DCD900322312 /* KOIRippleSprite.m */; };
 		A6679E6C1488DD5300322312 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = A6679E6B1488DD5300322312 /* image.png */; };
 /* End PBXBuildFile section */
 
@@ -150,10 +152,12 @@
 		1337D9CC175653EF0059BBF5 /* water.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = water.wav; sourceTree = "<group>"; };
 		135509361764E6FB00D20618 /* player_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player_run.png; sourceTree = "<group>"; };
 		135509381764E7B300D20618 /* fish3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish3.png; sourceTree = "<group>"; };
+		1368D9DE177022B300AA7439 /* BGHD4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGHD4.png; sourceTree = "<group>"; };
 		13D4FC7B176605B9002782DA /* fish_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish_run.png; sourceTree = "<group>"; };
 		13D4FC7D17660A7F002782DA /* koi_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koi_run.png; sourceTree = "<group>"; };
 		13D4FC7F1766ECE1002782DA /* koi_run_Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = koi_run_Large.png; sourceTree = "<group>"; };
 		13D4FC8117670FDD002782DA /* wave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wave.mp3; sourceTree = "<group>"; };
+		13D4FC831768187D002782DA /* BGHD3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGHD3.png; sourceTree = "<group>"; };
 		A6037F1B148C112D00442DAA /* image_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image_old.png; path = Resources/image_old.png; sourceTree = "<group>"; };
 		A6679CD91488DA7D00322312 /* Koi HD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Koi HD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6679CDD1488DA7D00322312 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -388,8 +392,8 @@
 		A6679E481488DA8000322312 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		A6679E491488DA8000322312 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		A6679E4B1488DA8000322312 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
-		A6679E511488DCD900322312 /* pgeRippleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgeRippleSprite.h; sourceTree = "<group>"; };
-		A6679E521488DCD900322312 /* pgeRippleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pgeRippleSprite.m; sourceTree = "<group>"; };
+		A6679E511488DCD900322312 /* KOIRippleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOIRippleSprite.h; sourceTree = "<group>"; };
+		A6679E521488DCD900322312 /* KOIRippleSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOIRippleSprite.m; sourceTree = "<group>"; };
 		A6679E6B1488DD5300322312 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = Resources/image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -461,8 +465,8 @@
 				A6679E481488DA8000322312 /* HelloWorldLayer.h */,
 				A6679E491488DA8000322312 /* HelloWorldLayer.m */,
 				A6679E4B1488DA8000322312 /* GameConfig.h */,
-				A6679E511488DCD900322312 /* pgeRippleSprite.h */,
-				A6679E521488DCD900322312 /* pgeRippleSprite.m */,
+				A6679E511488DCD900322312 /* KOIRippleSprite.h */,
+				A6679E521488DCD900322312 /* KOIRippleSprite.m */,
 			);
 			path = rippleDemo;
 			sourceTree = "<group>";
@@ -476,6 +480,8 @@
 				135509381764E7B300D20618 /* fish3.png */,
 				1337D9B71756388E0059BBF5 /* BG.png */,
 				1337D9C71756492A0059BBF5 /* BGHD.png */,
+				13D4FC831768187D002782DA /* BGHD3.png */,
+				1368D9DE177022B300AA7439 /* BGHD4.png */,
 				135509361764E6FB00D20618 /* player_run.png */,
 				13D4FC7B176605B9002782DA /* fish_run.png */,
 				13D4FC7D17660A7F002782DA /* koi_run.png */,
@@ -880,6 +886,8 @@
 				13D4FC7E17660A7F002782DA /* koi_run.png in Resources */,
 				13D4FC801766ECE1002782DA /* koi_run_Large.png in Resources */,
 				13D4FC8217670FDD002782DA /* wave.mp3 in Resources */,
+				13D4FC841768187D002782DA /* BGHD3.png in Resources */,
+				1368D9DF177022B300AA7439 /* BGHD4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,7 +997,7 @@
 				A6679E441488DA8000322312 /* AppDelegate.m in Sources */,
 				A6679E471488DA8000322312 /* RootViewController.m in Sources */,
 				A6679E4A1488DA8000322312 /* HelloWorldLayer.m in Sources */,
-				A6679E531488DCD900322312 /* pgeRippleSprite.m in Sources */,
+				A6679E531488DCD900322312 /* KOIRippleSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1046,7 +1054,7 @@
 				GCC_PREFIX_HEADER = rippleDemo/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = rippleDemo/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "Koi HD";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1067,7 +1075,7 @@
 				GCC_PREFIX_HEADER = rippleDemo/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = rippleDemo/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "Koi HD";
 				TARGETED_DEVICE_FAMILY = 2;

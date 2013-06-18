@@ -1,43 +1,43 @@
 //
-//  HelloWorldLayer.m
-//  rippleDemo
+//  main.m
+//  Koi HD
 //
-//  Created by Lars Birkemose on 02/12/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Created by 大畅 on 13-5-9.
+//  Copyright OceanDev 2013. All rights reserved.
 //
 
 
-// Import the interfaces
+
+
 #import "HelloWorldLayer.h"
 #import "SimpleAudioEngine.h"
 
-// HelloWorldLayer implementation
+
 @implementation HelloWorldLayer
 
 +(CCScene *) scene
 {
-	// 'scene' is an autorelease object.
+	
 	CCScene *scene = [CCScene node];
 	
-	// 'layer' is an autorelease object.
+	
 	HelloWorldLayer *layer = [HelloWorldLayer node];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
 	
-	// return the scene
+	
 	return scene;
 }
 
-// on "init" you need to initialize your instance
+
 -(id) init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super" return value
+
 	if( (self=[super init])) {
 
         // --------------------------------------------------------------------------
-        // create ripple sprite
+        // create KOI sprite
         // --------------------------------------------------------------------------
 
         // create koi animation
@@ -109,12 +109,16 @@
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"water.wav"];
         [[SimpleAudioEngine sharedEngine] preloadEffect:@"wave.mp3"];
         
-        rippleImage = [ pgeRippleSprite ripplespriteWithFile:@"BGHD.png" ];
+        
+        // --------------------------------------------------------------------------
+        // create Ripple sprite
+        // --------------------------------------------------------------------------
+        rippleImage = [ KOIRippleSprite ripplespriteWithFile:@"BGHD.png" ];
         [ self addChild:rippleImage ];
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background.wav" loop:YES];
 
-        // --------------------------------------------------------------------------
+
 
    
         // enable touch
@@ -148,7 +152,7 @@ float runtime = 0;
         pos = [ [ CCDirector sharedDirector ] convertToGL:pos ];
     
         // [ rippleImage addRipple:pos type:RIPPLE_TYPE_RUBBER strength:1.0f ];    
-        [ rippleImage addRipple:pos type:RIPPLE_TYPE_WATER strength:2.0f ];
+        [ rippleImage addRipple:pos type:RIPPLE_TYPE_RUBBER strength:2.0f ];
         
         
         if([self checkKoiDistance:koi_tiny atPosition:pos] || [self checkKoiDistance:koi_tiny atPosition:pos])
@@ -202,6 +206,10 @@ float runtime = 0;
 
     }
 }
+
+// --------------------------------------------------------------------------
+// create KOI sprite behaviour
+// --------------------------------------------------------------------------
 
 -(void) checkKoiRotation:(CCSprite*) koi atPostion:(CGPoint) pos
 {
@@ -281,14 +289,12 @@ float runtime = 0;
     [ rippleImage update:dt ];
 }
 
-// on "dealloc" you need to release all your retained objects
+
 - (void) dealloc
 {
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
+
 	// cocos2d will automatically release all the children (Label)
 	
-	// don't forget to call "super dealloc"
 	[super dealloc];
 }
 @end

@@ -1,10 +1,11 @@
 //
-//  AppDelegate.m
-//  rippleDemo
+//  main.m
+//  Koi HD
 //
-//  Created by Lars Birkemose on 02/12/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Created by 大畅 on 13-5-9.
+//  Copyright OceanDev 2013. All rights reserved.
 //
+
 
 #import "cocos2d.h"
 
@@ -19,11 +20,6 @@
 
 - (void) removeStartupFlicker
 {
-	//
-	// THIS CODE REMOVES THE STARTUP FLICKER
-	//
-	// Uncomment the following code if you Application only supports landscape mode
-	//
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 
 //	CC_ENABLE_DEFAULT_GL_STATES();
@@ -44,7 +40,6 @@
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	// Try to use CADisplayLink director
-	// if it fails (SDK < 3.1) use the default director
 	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 		[CCDirector setDirectorType:kCCDirectorTypeDefault];
 	
@@ -55,15 +50,10 @@
 	viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
 	viewController.wantsFullScreenLayout = YES;
 	
-	//
-	// Create the EAGLView manually
-	//  1. Create a RGB565 format. Alternative: RGBA8
-	//	2. depth format of 0 bit. Use 16 or 24 bit for 3d effects, like CCPageTurnTransition
-	//
-	//
+
 	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
-								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
+								   depthFormat:0						// 16 or 24 for 3D
 						];
 	
 	// attach the openglView to the director
@@ -73,15 +63,7 @@
 //	if( ! [director enableRetinaDisplay:YES] )
 //		CCLOG(@"Retina Display Not supported");
 	
-	//
-	// VERY IMPORTANT:
-	// If the rotation is going to be controlled by a UIViewController
-	// then the device orientation should be "Portrait".
-	//
-	// IMPORTANT:
-	// By default, this template only supports Landscape orientations.
-	// Edit the RootViewController.m file to edit the supported orientations.
-	//
+
 #if GAME_AUTOROTATION == kGameAutorotationUIViewController
 	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
 #else

@@ -1,10 +1,11 @@
 //
-//  AppDelegate.h
-//  rippleDemo
+//  main.m
+//  Koi HD
 //
-//  Created by Lars Birkemose on 02/12/11.
-//  Copyright __MyCompanyName__ 2011. All rights reserved.
+//  Created by 大畅 on 13-5-9.
+//  Copyright OceanDev 2013. All rights reserved.
 //
+
 
 #import <UIKit/UIKit.h>
 

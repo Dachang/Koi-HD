@@ -1,34 +1,30 @@
 //
-//  pgeRippleSprite.m
-//  rippleDemo
+//  main.m
+//  Koi HD
 //
-//  Created by Lars Birkemose on 02/12/11.
-//  Copyright 2011 Protec Electronics. All rights reserved.
+//  Created by 大畅 on 13-5-9.
+//  Copyright OceanDev 2013. All rights reserved.
 //
-// --------------------------------------------------------------------------
-// import headers
 
-#import "pgeRippleSprite.h"
 
-// --------------------------------------------------------------------------
-// implementation
 
-@implementation pgeRippleSprite
+#import "KOIRippleSprite.h"
 
-// --------------------------------------------------------------------------
-// properties
 
-// --------------------------------------------------------------------------
-// methods
-// --------------------------------------------------------------------------
 
-+( pgeRippleSprite* )ripplespriteWithFile:( NSString* )filename {
+@implementation KOIRippleSprite
+
+
+// --------------------------------methods----------------------------------//
+
+
++( KOIRippleSprite* )ripplespriteWithFile:( NSString* )filename {
 	return [ [ [ self alloc ] initWithFile:filename ] autorelease ];
 }
 
-// --------------------------------------------------------------------------
+// -------------------------init texture file-------------------------------//
 
--( pgeRippleSprite* )initWithFile:( NSString* )filename {
+-( KOIRippleSprite* )initWithFile:( NSString* )filename {
     self = [ super init ];
     // load texture
     m_texture = [ [ CCTextureCache sharedTextureCache ] addImage: filename ];
@@ -42,51 +38,39 @@
     
     // create ripple list
     m_rippleList = [ [ [ NSMutableArray alloc ] init ] retain ];
-    // done
+    
     return( self );
 }
 
-// --------------------------------------------------------------------------
+// ------------------------------set GLView------------------------------//
 
 -( void )draw {
-    // skip if not visible
     if ( self.visible == NO ) return;
     
-    // add transformations
     glPushMatrix( );
     
-    // well, I dont really need transformations on my ripples, so I will leave this part to you
-    // but I added push and pop - just to be nice
-    
-    // set states        
     glDisableClientState( GL_COLOR_ARRAY );
-    // glDisable( GL_BLEND );
 
-    // and plx, dont just draw anything
     glBindTexture( GL_TEXTURE_2D, [ m_texture name ] ); 
     
     // set texture coordinates
-    // if no ripples running, use original coordinates ( Yay, dig that kewl old school C syntax )
+    // if no ripples running, use original coordinates
     glTexCoordPointer( 2, GL_FLOAT, 0, ( m_rippleList.count == 0 ) ? m_textureCoordinate : m_rippleCoordinate );
     
     // set vertice pointer
     glVertexPointer( 2, GL_FLOAT, 0, m_vertice );
     
     // draw as many triangle fans, as quads in y direction
-    // ( I guess traditional mongolians, would have made it vertical fans, but here I am, sitting in western Europa )
     for ( int strip = 0; strip < m_quadCountY; strip ++ ) {
         glDrawArrays( GL_TRIANGLE_STRIP, strip * m_VerticesPrStrip, m_VerticesPrStrip );
     }
     
-    // reset any state altered ( Riq wants us to )
-    // glEnable( GL_BLEND );
     glEnableClientState( GL_COLOR_ARRAY );
     
-    // restore
     glPopMatrix( );
 }
 
-// --------------------------------------------------------------------------
+// ------------------------------dealloc--------------------------------//
 
 -( void )dealloc {
     rippleData* runningRipple;
@@ -114,14 +98,13 @@
     [ super dealloc ];
 }
 
-// --------------------------------------------------------------------------
-// tesselation is expensive
+// ---------------------------tesslation(bounce edge)------------------------------//
 
 -( void )tesselate {
     int vertexPos = 0;
     CGPoint normalized;
     
-    // clear buffers ( yeah, clearing nil buffers first time around )
+    // clear buffers
     free( m_vertice );
     free( m_textureCoordinate );
     free( m_rippleCoordinate );
@@ -143,14 +126,12 @@
     vertexPos = 0;
     
     // create all vertices and default texture coordinates
-    // scan though y quads, and create an x-oriented triangle strip for each
     for ( int y = 0; y < m_quadCountY; y ++ ) {
         
         // x counts to quadcount + 1, because number of vertices is number of quads + 1
         for ( int x = 0; x < ( m_quadCountX + 1 ); x ++ ) {
         
             // for each x vertex, an upper and lower y position is calculated, to create the triangle strip
-            // upper + lower + upper + lower
             for ( int yy = 0; yy < 2; yy ++ ) {
                 
                 // first simply calculate a normalized position into rectangle
@@ -161,11 +142,9 @@
                 m_vertice[ vertexPos ] = ccp( normalized.x * [ m_texture contentSize ].width, normalized.y * [ m_texture contentSize ].height );
                 
                 // adjust texture coordinates according to texture size
-                // as a texture is always in the power of 2, maxS and maxT are the fragment of the size actually used
-                // invert y on texture coordinates
                 m_textureCoordinate[ vertexPos ] = ccp( normalized.x * m_texture.maxS, m_texture.maxT - ( normalized.y * m_texture.maxT ) );
                 
-                // check if vertice is an edge vertice, because edge vertices are never modified to keep outline consistent
+                // check if vertice is an edge vertice
                 m_edgeVertice[ vertexPos ] = ( 
                                               ( x == 0 ) || 
                                               (x == m_quadCountX) || (x == m_quadCountX - 1) ||
@@ -180,11 +159,7 @@
     } 
 }
 
-// --------------------------------------------------------------------------
-// adds a ripple to list of running ripples
-// OBS
-// strength of 1.0f is maximum ripple strength.
-// strengths above that, might result in texture artifacts
+// ---------------add ripples into running ripple list--------------------------------//
 
 -( void )addRipple:( CGPoint )pos type:( RIPPLE_TYPE )type strength:( float )strength {
     rippleData* newRipple;
@@ -199,7 +174,7 @@
     newRipple->center = pos;
     newRipple->centerCoordinate = ccp( pos.x / [ m_texture contentSize ].width * m_texture.maxS, m_texture.maxT - ( pos.y / [ m_texture contentSize ].height * m_texture.maxT ) );
     newRipple->radius = RIPPLE_DEFAULT_RADIUS; // * strength;
-    newRipple->strength = strength;
+    newRipple->strength = strength; 
     newRipple->runtime = 0;
     newRipple->currentRadius = 0;
     newRipple->rippleCycle = RIPPLE_DEFAULT_RIPPLE_CYCLE;
@@ -211,8 +186,8 @@
 
 }
 
-// --------------------------------------------------------------------------
-// adds a ripple child, to mimic bouncing ripples
+// ---------------adds a ripple child, to mimic bouncing ripples-----------------//
+
 
 -( void )addRippleChild:( rippleData* )parent type:( RIPPLE_CHILD )type {
     rippleData* newRipple;
@@ -221,7 +196,7 @@
     // allocate new ripple
     newRipple = malloc( sizeof( rippleData ) );
     
-    // new ripple is pretty much a copy of its parent
+    // new ripple is a copy of its parent (almost)
     memcpy( newRipple, parent, sizeof( rippleData ) );
     
     // not a parent
@@ -255,25 +230,23 @@
 	[ m_rippleList addObject:[ NSValue valueWithPointer:newRipple ] ];
 }
 
-// --------------------------------------------------------------------------
-// update any running ripples
-// it is parents responsibility to call the method with appropriate intervals
+// --------------update: called every frame, manipulate textures--------------------//
 
 -( void )update:( ccTime )dt {
     rippleData* ripple;
     CGPoint pos;
     float distance, correction;
     
-    // test if any ripples at all
+    // test if any ripples exist
     if ( m_rippleList.count == 0 ) return;
     
     // ripples are simulated by altering texture coordinates
     // on all updates, an entire new array is calculated from the base array 
-    // not maintainng an original set of texture coordinates, could result in accumulated errors
+    
     memcpy( m_rippleCoordinate, m_textureCoordinate, m_bufferSize * sizeof( CGPoint ) );
     
     // scan through running ripples
-    // the scan is backwards, so that ripples can be removed on the fly
+    // the scan is backwards
     for ( int count = ( m_rippleList.count - 1 ); count >= 0; count -- ) {
     
         // get ripple data
@@ -286,9 +259,6 @@
             if ( m_edgeVertice[ count ] == NO ) {
                 
                 // calculate distance
-                // you might think it would be faster to do a box check first
-                // but it really isnt, 
-                // ccpDistance is like my sexlife - BAM! - and its all over
                 distance = ccpDistance( ripple->center, m_vertice[ count ] );
                 
                 // only modify vertices within range
@@ -297,33 +267,31 @@
                     // load the texture coordinate into an easy to use var
                     pos = m_rippleCoordinate[ count ];  
             
-                    // calculate a ripple 
+                    // calculate a ripple correction
                     switch ( ripple->rippleType ) {
                         
                         case RIPPLE_TYPE_RUBBER:
                             // method A
                             // calculate a sinus, based only on time
-                            // this will make the ripples look like poking a soft rubber sheet, since sinus position is fixed
                             correction = sinf( 2 * M_PI * ripple->runtime / ripple->rippleCycle );
                             break;
                             
                         case RIPPLE_TYPE_GEL:
                             // method B
                             // calculate a sinus, based both on time and distance
-                            // this will look more like a high viscosity fluid, since sinus will travel with radius                            
+                            // this will look more better, since sinus will travel with radius                            
                             correction = sinf( 2 * M_PI * ( ripple->currentRadius - distance ) / ripple->radius * ripple->lifespan / ripple->rippleCycle );
                             break;
                             
                         case RIPPLE_TYPE_WATER:
                         default:
-                            // method c
+                            // method C
                             // like method b, but faded for time and distance to center
-                            // this will look more like a low viscosity fluid, like water     
-                            
+                            // this will look more like water     
                             correction = ( ripple->radius * ripple->rippleCycle / ripple->lifespan ) / ( ripple->currentRadius - distance );
                             if ( correction > 1.0f ) correction = 1.0f;
                             
-                            // fade center of quicker
+
                             correction *= correction;
                             
                             correction *= sinf( 2 * M_PI * ( ripple->currentRadius - distance ) / ripple->radius * ripple->lifespan / ripple->rippleCycle );
@@ -331,10 +299,10 @@
                             
                     }
                                                                     
-                    // fade with distance
+                    // distance Calibration
                     correction *= 1 - ( distance / ripple->currentRadius );
                     
-                    // fade with time
+                    // time Calibration
                     correction *= 1 - ( ripple->runtime / ripple->lifespan );
                     
                     // adjust for base gain and user strength
@@ -342,12 +310,8 @@
                     correction *= ripple->strength;
                     
                     // finally modify the coordinate by interpolating
-                    // because of interpolation, adjustment for distance is needed, 
                     correction /= ccpDistance( ripple->centerCoordinate, pos );
                     pos = ccpAdd( pos, ccpMult( ccpSub( pos, ripple->centerCoordinate ), correction ) );
-                    
-                    // another approach for applying correction, would be to calculate slope from center to pos
-                    // and then adjust based on this
                     
                     // clamp texture coordinates to avoid artifacts
                     pos = ccpClamp( pos, CGPointZero, ccp( m_texture.maxS, m_texture.maxT ) );
@@ -373,7 +337,7 @@
         } else {
             
 #ifdef RIPPLE_BOUNCE
-            // check for creation of child ripples
+            // check for creation of child ripples (bounce)
             if ( ripple->parent == YES ) {
                 
                 // left ripple
@@ -406,6 +370,5 @@
     }
 }
 
-// --------------------------------------------------------------------------
 
 @end

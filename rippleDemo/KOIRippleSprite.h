@@ -1,18 +1,17 @@
 //
-//  pgeRippleSprite.h
-//  rippleDemo
+//  main.m
+//  Koi HD
 //
-//  Created by Lars Birkemose on 02/12/11.
-//  Copyright 2011 Protec Electronics. All rights reserved.
+//  Created by 大畅 on 13-5-9.
+//  Copyright OceanDev 2013. All rights reserved.
 //
-// --------------------------------------------------------------------------
-// import headers
+
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
 // --------------------------------------------------------------------------
-// defines
+// defines default values
 
 #define RIPPLE_DEFAULT_QUAD_COUNT_X             60         
 #define RIPPLE_DEFAULT_QUAD_COUNT_Y             40 
@@ -30,9 +29,9 @@
 // typedefs
 
 typedef enum {
-    RIPPLE_TYPE_RUBBER,                                     // a soft rubber sheet
-    RIPPLE_TYPE_GEL,                                        // high viscosity fluid
-    RIPPLE_TYPE_WATER,                                      // low viscosity fluid
+    RIPPLE_TYPE_RUBBER,                                     // type1(strange)
+    RIPPLE_TYPE_GEL,                                        // type2(better)
+    RIPPLE_TYPE_WATER,                                      // type3(water)
 } RIPPLE_TYPE;
 
 typedef enum {
@@ -45,9 +44,9 @@ typedef enum {
 
 typedef struct _rippleData {
     bool                    parent;                         // ripple is a parent
-    bool                    childCreated[ 4 ];              // child created ( in the 4 direction )
-    RIPPLE_TYPE             rippleType;                     // type of ripple ( se update: )
-    CGPoint                 center;                         // ripple center ( but you just knew that, didn't you? )
+    bool                    childCreated[ 4 ];              // child created (4 directions)
+    RIPPLE_TYPE             rippleType;                     // type of ripple
+    CGPoint                 center;                         // ripple center
     CGPoint                 centerCoordinate;               // ripple center in texture coordinates
     float                   radius;                         // radius at which ripple has faded 100%
     float                   strength;                       // ripple strength 
@@ -60,7 +59,7 @@ typedef struct _rippleData {
 // --------------------------------------------------------------------------
 // interface
 
-@interface pgeRippleSprite : CCNode {
+@interface KOIRippleSprite : CCNode {
     CCTexture2D*            m_texture;   
     int                     m_quadCountX;                   // quad count in x and y direction
     int                     m_quadCountY;
@@ -74,13 +73,10 @@ typedef struct _rippleData {
 }
 
 // --------------------------------------------------------------------------
-// properties
-
-// --------------------------------------------------------------------------
 // methods
 
-+( pgeRippleSprite* )ripplespriteWithFile:( NSString* )filename;
--( pgeRippleSprite* )initWithFile:( NSString* )filename;
++( KOIRippleSprite* )ripplespriteWithFile:( NSString* )filename;
+-( KOIRippleSprite* )initWithFile:( NSString* )filename;
 -( void )tesselate;
 -( void )addRipple:( CGPoint )pos type:( RIPPLE_TYPE )type strength:( float )strength;
 -( void )addRippleChild:( rippleData* )parent type:( RIPPLE_CHILD )type;
